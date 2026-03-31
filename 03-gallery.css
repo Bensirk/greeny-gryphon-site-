@@ -14,13 +14,11 @@
 .main-nav {
     background: linear-gradient(90deg, #82be85, #c3dac6);
     padding: 15px 30px;
-}
-
-/* Logo inside nav */
-.main-nav .logo img {
+    .logo img {
     width: 90px;
     height: auto;
     display: block;
+}
 }
 
 /* ------------------------------
@@ -39,7 +37,7 @@ main {
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;
-    font-size: 0; /* removes inline-block spacing */
+    font-size: 0;
 }
 
 .gallery-item {
@@ -71,15 +69,11 @@ main {
     box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
-/* ------------------------------
-   SUBTITLE
------------------------------- */
 .gallery-subtitle {
     text-align: center;
     font-size: 32px;
     font-weight: 600;
     margin-bottom: 40px;
-    color: #2e7d32;
+    color: #2e7d32; /* your brand green */
     letter-spacing: 0.5px;
-}
 }
