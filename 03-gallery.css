@@ -39,7 +39,7 @@ main {
     max-width: 1200px;
     margin: 0 auto;
     text-align: center;
-    font-size: 0;
+    font-size: 0; /* removes inline-block spacing */
 }
 
 .gallery-item {
@@ -71,11 +71,15 @@ main {
     box-shadow: 0 8px 20px rgba(0,0,0,0.25);
 }
 
+/* ------------------------------
+   SUBTITLE
+------------------------------ */
 .gallery-subtitle {
     text-align: center;
     font-size: 32px;
     font-weight: 600;
     margin-bottom: 40px;
-    color: #2e7d32; /* your brand green */
+    color: #2e7d32;
     letter-spacing: 0.5px;
+}
 }
