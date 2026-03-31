@@ -14,11 +14,13 @@
 .main-nav {
     background: linear-gradient(90deg, #82be85, #c3dac6);
     padding: 15px 30px;
-    .logo img {
+}
+
+/* Logo inside nav */
+.main-nav .logo img {
     width: 90px;
     height: auto;
     display: block;
-}
 }
 
 /* ------------------------------
