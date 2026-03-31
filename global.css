@@ -1,11 +1,51 @@
 /* =========================================
-   NAVIGATION — GALLERY STYLE
+   CSS CUSTOM PROPERTIES (Design Tokens)
+   Single source of truth for theme values
 ========================================= */
+:root {
+    /* Color Palette */
+    --primary-green: #2ecc71;
+    --primary-green-dark: #27ae60;
+    --primary-green-darker: #2e7d32;
+    --accent-light: #82be85;
+    --accent-lighter: #c3dac6;
+    --background-light: #e8f5e9;
+    --text-primary: #1a1a1a;
+    --white: #ffffff;
+    
+    /* Spacing Scale */
+    --space-xs: 8px;
+    --space-sm: 12px;
+    --space-md: 20px;
+    --space-lg: 24px;
+    --space-xl: 30px;
+    --space-2xl: 40px;
+    --space-3xl: 60px;
+    
+    /* Typography */
+    --font-weight-normal: 400;
+    --font-weight-semibold: 600;
+    
+    /* Shadows */
+    --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.08);
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    
+    /* Border Radius */
+    --radius-md: 6px;
+}
 
+/* =========================================
+   NAVIGATION — GLOBAL THEME
+   Scoped with .main-nav to avoid conflicts
+========================================= */
 .main-nav {
-    background: linear-gradient(90deg, #82be85, #c3dac6);
-    padding: 15px 30px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    background: linear-gradient(90deg, var(--accent-light), var(--accent-lighter));
+    padding: 15px var(--space-xl);
+    box-shadow: var(--shadow-sm);
+    position: relative;
+    z-index: 1000;
 }
 
 .main-nav .logo img {
@@ -18,98 +58,161 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .nav-links {
     display: flex;
-    gap: 24px;
+    gap: var(--space-lg);
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
 .nav-links a {
-    color: #1a1a1a;
-    font-weight: 600;
+    color: var(--text-primary);
+    font-weight: var(--font-weight-semibold);
     text-decoration: none;
-    transition: 0.2s ease;
+    transition: color var(--transition-fast);
+    position: relative;
 }
 
 .nav-links a:hover,
+.nav-links a:focus {
+    color: var(--primary-green-darker);
+    outline: none;
+}
+
 .nav-links a.active {
-    color: #2e7d32;
+    color: var(--primary-green-darker);
 }
 
+/* Accessibility: Focus indicator */
+.nav-links a:focus-visible {
+    outline: 2px solid var(--primary-green-darker);
+    outline-offset: 4px;
+    border-radius: 2px;
+}
 
 /* =========================================
-   MAIN BACKGROUND — GALLERY STYLE
+   MAIN CONTENT AREA — SCOPED
+   Use .page-content instead of generic 'main'
 ========================================= */
-
-main {
+.page-content {
     flex: 1;
-    padding: 60px 0;
-    background: linear-gradient(180deg, #ffffff, #e8f5e9);
+    padding: var(--space-3xl) 0;
+    background: linear-gradient(180deg, var(--white), var(--background-light));
+    min-height: calc(100vh - 200px); /* Adjust based on header/footer height */
 }
 
+/* Alternative: If you need to keep 'main' selector */
+main.gallery-theme {
+    flex: 1;
+    padding: var(--space-3xl) 0;
+    background: linear-gradient(180deg, var(--white), var(--background-light));
+}
 
 /* =========================================
-   BUTTONS — GALLERY STYLE
+   BUTTONS — COMPONENT LIBRARY
+   Increased specificity to prevent overrides
 ========================================= */
-
 .btn {
-    background: #2ecc71;
-    color: white;
-    padding: 12px 20px;
-    border-radius: 6px;
     display: inline-block;
-    transition: background .2s ease;
-    font-weight: 600;
+    padding: var(--space-sm) var(--space-md);
+    font-weight: var(--font-weight-semibold);
+    text-align: center;
+    text-decoration: none;
+    border-radius: var(--radius-md);
+    border: 2px solid transparent;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+    line-height: 1.5;
 }
 
-.btn:hover {
-    background: #27ae60;
+/* Primary Button */
+.btn.btn-primary,
+.btn:not(.btn-outline):not(.btn-secondary) {
+    background: var(--primary-green);
+    color: var(--white);
+    border-color: var(--primary-green);
 }
 
-.btn-outline {
+.btn.btn-primary:hover,
+.btn:not(.btn-outline):not(.btn-secondary):hover {
+    background: var(--primary-green-dark);
+    border-color: var(--primary-green-dark);
+}
+
+.btn.btn-primary:focus-visible,
+.btn:not(.btn-outline):not(.btn-secondary):focus-visible {
+    outline: 3px solid var(--primary-green);
+    outline-offset: 2px;
+}
+
+/* Outline Button */
+.btn.btn-outline {
     background: transparent;
-    border: 2px solid #2ecc71;
-    color: #2ecc71;
+    border: 2px solid var(--primary-green);
+    color: var(--primary-green);
 }
 
-.btn-outline:hover {
-    background: #2ecc71;
-    color: white;
+.btn.btn-outline:hover {
+    background: var(--primary-green);
+    color: var(--white);
 }
 
+.btn.btn-outline:focus-visible {
+    outline: 3px solid var(--primary-green);
+    outline-offset: 2px;
+}
 
 /* =========================================
-   FOOTER — GALLERY STYLE
+   FOOTER — GLOBAL THEME
+   Scoped with .site-footer to avoid conflicts
 ========================================= */
-
 .site-footer {
-    background: #2ecc71;
-    padding: 60px 40px;
-    color: white;
+    background: var(--primary-green);
+    padding: var(--space-3xl) var(--space-2xl);
+    color: var(--white);
 }
 
 .footer-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    gap: 60px;
+    gap: var(--space-3xl);
+    max-width: 1400px;
+    margin: 0 auto;
 }
 
 .footer-section {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--space-xs);
+}
+
+.footer-section h3 {
+    margin-bottom: var(--space-sm);
+    font-weight: var(--font-weight-semibold);
 }
 
 .footer-section a {
-    color: white;
+    color: var(--white);
     text-decoration: none;
+    transition: opacity var(--transition-fast);
 }
 
-.footer-section a:hover {
+.footer-section a:hover,
+.footer-section a:focus {
     opacity: 0.8;
+    outline: none;
+}
+
+.footer-section a:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 2px;
+    border-radius: 2px;
 }
 
 .social-links {
@@ -118,7 +221,45 @@ main {
     margin: 0;
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: var(--space-xs);
+}
+
+.social-links i {
+    margin-right: var(--space-xs);
+    font-size: 18px;
+    color: var(--white);
+}
+
+/* =========================================
+   RESPONSIVE DESIGN
+   Mobile-first approach
+========================================= */
+@media (max-width: 768px) {
+    .main-nav {
+        padding: 15px var(--space-md);
+    }
+    
+    .nav-links {
+        gap: var(--space-sm);
+        font-size: 14px;
+    }
+    
+    .footer-container {
+        flex-direction: column;
+        gap: var(--space-2xl);
+    }
+    
+    .page-content {
+        padding: var(--space-2xl) 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-links {
+        flex-direction: column;
+        gap: var(--space-xs);
+    }
+};
 }
 
 .social-links i {
